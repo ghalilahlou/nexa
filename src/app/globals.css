@@ -19,8 +19,30 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html, body {
+  min-height: 100%;
+  background-color: #fefcf8;
+  color: #0a1f33;
+  font-family: 'Manrope', sans-serif;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #f8f8f8;
+}
+::-webkit-scrollbar-thumb {
+  background: #c7a770;
+  border-radius: 4px;
+}
+
+/* Micro-interactions premium */
+button, a {
+  transition: all 0.2s cubic-bezier(.4,0,.2,1);
 }

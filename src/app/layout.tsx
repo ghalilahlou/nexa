@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "@fontsource/manrope/400.css";
+import "@fontsource/manrope/700.css";
+import "@fontsource/playfair-display/400.css";
+import "@fontsource/playfair-display/700.css";
+import Navbar from "../components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,8 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={
+          "font-sans bg-[#fefcf8] text-[#0a1f33] antialiased min-h-screen" // Manrope par défaut, fond ivoire, texte bleu nuit
+        }
       >
+        <Navbar />
         {children}
       </body>
     </html>
