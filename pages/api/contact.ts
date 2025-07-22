@@ -29,8 +29,8 @@ type ParsedData = {
 };
 
 // Fonction d'échappement HTML pour éviter l'injection
-function escapeHtml(text?: string) {
-  return (text || '').replace(/[&<>'"]/g, c => (
+function escapeHtml(text?: unknown) {
+  return String(text || '').replace(/[&<>'"]/g, c => (
     {
       '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
     }[c] || c
