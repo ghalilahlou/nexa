@@ -28,6 +28,13 @@ type ParsedData = {
   files: FormFiles;
 };
 
+// Fonction d'échappement HTML pour éviter l'injection
+function escapeHtml(text?: string) {
+  return (text || '').replace(/[&<>'"]/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  }[c]));
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -60,19 +67,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           </div>
         </div>
         <div style="background: linear-gradient(120deg, #fffbe9 0%, #ffe5ec 100%); border-radius: 16px; box-shadow: 0 2px 16px #c7a77022; padding: 24px;">
-          <div style="margin-bottom: 12px;"><b>Name:</b> ${name}</div>
-          <div style="margin-bottom: 12px;"><b>Email:</b> ${email}</div>
-          <div style="margin-bottom: 12px;"><b>Message:</b><br/><span style='white-space: pre-line;'>${message}</span></div>
+          <div style="margin-bottom: 12px;"><b>Name:</b> ${escapeHtml(name || '')}</div>
+          <div style="margin-bottom: 12px;"><b>Email:</b> ${escapeHtml(email || '')}</div>
+          <div style="margin-bottom: 12px;"><b>Message:</b><br/><span style='white-space: pre-line;'>${escapeHtml(message || '')}</span></div>
         </div>
         <div style="margin-top: 32px; font-size: 0.9rem; color: #c7a770; text-align: right;">Nexa Partners &copy; ${new Date().getFullYear()}</div>
       </div>
     `;
 
+    // Vérification explicite du chemin de Chromium
+    const executablePath = await chromium.executablePath;
+    if (!executablePath) {
+      console.error('Chromium executablePath not found. chrome-aws-lambda may not be supported in this environment.');
+      return res.status(500).json({ success: false, error: 'Chromium executablePath not found. chrome-aws-lambda may not be supported in this environment.' });
+    }
     // Remplacer le lancement du navigateur Puppeteer par la version compatible Vercel
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
+      executablePath,
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });
@@ -99,6 +112,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     ];
 
     if (userFile?.filepath) {
+      // Limite la taille à 2 Mo
+      if (userFile.size > 2 * 1024 * 1024) {
+        return res.status(400).json({ success: false, error: 'File too large (max 2MB).' });
+      }
+      // Accepte uniquement PDF et DOCX
+      const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!allowedTypes.includes(userFile.mimetype || '')) {
+        return res.status(400).json({ success: false, error: 'Invalid file type.' });
+      }
       attachments.push({
         filename: userFile.originalFilename || userFile.newFilename || 'attachment',
         content: fs.readFileSync(userFile.filepath),
