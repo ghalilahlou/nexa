@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from 'next/image';
 
 // Particules dorées animées pour About
 function GoldParticlesAbout() {
@@ -79,9 +80,11 @@ export default function AboutUs() {
           <div className="relative bg-white rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col items-center w-full max-w-xs border-2 border-pink-100 hover:border-nexa-gold transition-all duration-300 group">
             {/* Halo doré animé */}
             <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-36 h-36 rounded-full bg-gradient-to-br from-[#ffd70099] via-[#fffbe9cc] to-[#c7a77066] blur-2xl opacity-60 animate-halo-glow z-0" />
-            <img
+            <Image
               src="/assets/images/profile.png"
               alt="Hicham Boumnade"
+              width={128}
+              height={128}
               className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-full mb-4 shadow-md border-4 border-nexa-gold/30 relative z-10 group-hover:scale-105 group-hover:shadow-[0_0_32px_0_rgba(199,167,112,0.25)] transition-transform duration-300"
             />
             <div className="text-center relative z-10">

@@ -37,6 +37,7 @@ export default function Contact() {
       if (!res.ok) throw new Error('Failed to send');
       setSuccess(true);
     } catch (err) {
+      console.error('Contact form error:', err);
       alert('An error occurred while sending your message.');
       setSubmitted(false);
     }

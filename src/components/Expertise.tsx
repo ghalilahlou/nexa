@@ -72,7 +72,7 @@ export default function Expertise() {
         }
       }
     }
-  }, []);
+  }, [btnRefs, refs]);
 
   // Met à jour le hash dynamiquement lors du clic sur une rubrique
   function handleSelect(idx: number) {

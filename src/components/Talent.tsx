@@ -34,7 +34,7 @@ export default function Talent() {
           visible: { transition: { staggerChildren: 0.15 } },
         }}
       >
-        {talents.map((talent, idx) => (
+        {talents.map((talent) => (
           <motion.li
             key={talent.name}
             className="flex flex-col items-center bg-white/80 rounded-xl shadow-lg px-4 sm:px-6 py-3 sm:py-4 border-2 border-nexa-gold/20 hover:border-nexa-gold transition-all duration-300"

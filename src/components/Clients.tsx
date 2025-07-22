@@ -5,6 +5,7 @@ import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/free-mode";
+import Image from 'next/image';
 
 const clients = [
   { name: "Roland Berger", src: "/assets/images/clients/Roland Bergernew.png" },
@@ -51,9 +52,11 @@ export default function Clients() {
             <SwiperSlide key={client.name + idx} className="flex items-center justify-center">
               <div className="flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 group">
                 <div className="p-2 sm:p-4 flex items-center justify-center group-hover:shadow-[0_0_24px_0_rgba(199,167,112,0.4)] transition-all duration-300 bg-transparent">
-                  <img
+                  <Image
                     src={client.src}
                     alt={client.name}
+                    width={120}
+                    height={64}
                     className="max-h-10 sm:max-h-16 max-w-[80px] sm:max-w-[120px] object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 bg-transparent"
                     loading="lazy"
                     style={{ background: "transparent" }}

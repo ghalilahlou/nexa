@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { FiBriefcase, FiDollarSign, FiMonitor, FiBarChart2, FiArrowRight } from 'react-icons/fi';
-import { useRouter } from 'next/navigation';
 
 // Aurora wave SVG background
 function AuroraWave() {
@@ -41,26 +40,6 @@ function DottedGrid() {
         ))
       ))}
     </svg>
-  );
-}
-
-// Animated CTA button
-function AnimatedCTA() {
-  return (
-    <a
-      href="#about"
-      className="relative z-20 mt-12 px-10 py-4 rounded-full border-2 border-nexa-gold bg-nexa-gold/10 text-nexa-gold font-sans font-semibold text-xl backdrop-blur-md shadow-[0_0_24px_0_rgba(199,167,112,0.25)] flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-nexa-gold animate-btn-float overflow-hidden"
-      style={{ boxShadow: "0 0 32px 0 #ffd70055, 0 2px 16px 0 #c7a77033" }}
-    >
-      <span className="relative z-10">Discover our expertise</span>
-      <span className="inline-block group-hover:translate-y-1 transition-transform duration-300 relative z-10">↓</span>
-      {/* Wavy border SVG overlay */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 200 56" fill="none" preserveAspectRatio="none">
-        <path className="animate-wavy-border" d="M2,28 Q20,2 40,28 T80,28 T120,28 T160,28 T198,28" stroke="#ffd700" strokeWidth="3" fill="none" />
-      </svg>
-      {/* Shimmer effect */}
-      <span className="absolute left-0 top-0 w-full h-full shimmer" />
-    </a>
   );
 }
 
