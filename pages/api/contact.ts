@@ -77,8 +77,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       </div>
     `;
 
-    // Vérification explicite du chemin de Chromium
-    const executablePath = await chromium.executablePath;
+    // Vérification explicite du chemin de Chromium (avec variable d'environnement possible)
+    const executablePath = process.env.CHROME_EXECUTABLE_PATH || await chromium.executablePath;
     if (!executablePath) {
       console.error('Chromium executablePath not found. chrome-aws-lambda may not be supported in this environment.');
       return res.status(500).json({ success: false, error: 'Chromium executablePath not found. chrome-aws-lambda may not be supported in this environment.' });
