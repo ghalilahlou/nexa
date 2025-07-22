@@ -136,7 +136,7 @@ export default function Contact() {
       <div className="mt-8 sm:mt-10 text-center z-10 flex flex-col items-center gap-2">
         <div className="font-serif text-lg sm:text-xl text-nexa-night font-bold">Nexa Partners</div>
         <div className="text-nexa-steel text-sm sm:text-base">Casablanca, Morocco</div>
-        <a href="mailto:contact@nexapartners.com" className="text-nexa-gold font-sans underline hover:text-nexa-night transition-colors duration-200 text-sm sm:text-base">contact@nexapartners.com</a>
+        <a href="mailto:messnexa@gmail.com" className="text-nexa-gold font-sans underline hover:text-nexa-night transition-colors duration-200 text-sm sm:text-base">messnexa@gmail.com</a>
         <div className="flex gap-4 mt-2">
           <a
             href="https://www.linkedin.com/company/nexapartners/"
