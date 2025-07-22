@@ -28,14 +28,14 @@ export default function Clients() {
       {/* Creative color accent */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-br from-blue-200 via-nexa-gold/30 to-nexa-ivory/60 rounded-full blur-2xl z-0 opacity-60" />
       <div className="absolute right-0 top-1/3 w-32 h-32 bg-gradient-to-tr from-nexa-gold/20 via-blue-100 to-nexa-ivory/40 rounded-full blur-2xl z-0 opacity-50" />
-      <h2 className="font-serif text-3xl md:text-4xl font-bold text-nexa-night mb-8 text-center z-10">
+      <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-nexa-night mb-6 sm:mb-8 text-center z-10">
         <span className="text-nexa-gold">They trust us</span>
       </h2>
-      <div className="w-full max-w-5xl px-4 z-10">
+      <div className="w-full max-w-5xl px-2 sm:px-4 z-10">
         <Swiper
           modules={[Autoplay, FreeMode]}
-          spaceBetween={32}
-          slidesPerView={2}
+          spaceBetween={16}
+          slidesPerView={1}
           freeMode={true}
           breakpoints={{
             640: { slidesPerView: 3 },
@@ -50,11 +50,11 @@ export default function Clients() {
           {flowingClients.map((client, idx) => (
             <SwiperSlide key={client.name + idx} className="flex items-center justify-center">
               <div className="flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 group">
-                <div className="p-4 flex items-center justify-center group-hover:shadow-[0_0_24px_0_rgba(199,167,112,0.4)] transition-all duration-300 bg-transparent">
+                <div className="p-2 sm:p-4 flex items-center justify-center group-hover:shadow-[0_0_24px_0_rgba(199,167,112,0.4)] transition-all duration-300 bg-transparent">
                   <img
                     src={client.src}
                     alt={client.name}
-                    className="max-h-16 max-w-[120px] object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 bg-transparent"
+                    className="max-h-10 sm:max-h-16 max-w-[80px] sm:max-w-[120px] object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300 bg-transparent"
                     loading="lazy"
                     style={{ background: "transparent" }}
                   />
