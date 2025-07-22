@@ -14,6 +14,6 @@ export default function Home() {
       <Expertise />
       <Talent />
       <Contact />
-    </main>
+      </main>
   );
 }
