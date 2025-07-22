@@ -30,9 +30,11 @@ type ParsedData = {
 
 // Fonction d'échappement HTML pour éviter l'injection
 function escapeHtml(text?: string) {
-  return (text || '').replace(/[&<>'"]/g, c => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-  }[c]));
+  return (text || '').replace(/[&<>'"]/g, c => (
+    {
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    }[c] || c
+  ));
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
