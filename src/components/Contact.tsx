@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaLinkedin } from "react-icons/fa";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "", phone: "" });
   const [submitted, setSubmitted] = useState(false);
   const [file, setFile] = useState<File|null>(null);
   const [success, setSuccess] = useState(false);
@@ -28,6 +28,7 @@ export default function Contact() {
       const formData = new FormData();
       formData.append('name', form.name);
       formData.append('email', form.email);
+      formData.append('phone', form.phone);
       formData.append('message', form.message);
       if (file) formData.append('file', file);
       const res = await fetch('/api/contact', {
@@ -76,7 +77,7 @@ export default function Contact() {
             <button
               type="button"
               className="mt-2 px-6 py-2 rounded-full border-2 border-nexa-gold bg-nexa-gold/10 text-nexa-gold font-sans font-semibold text-base hover:bg-nexa-gold hover:text-nexa-night transition-colors duration-300 shadow"
-              onClick={() => { setSuccess(false); setSubmitted(false); setForm({ name: '', email: '', message: '' }); setFile(null); }}
+              onClick={() => { setSuccess(false); setSubmitted(false); setForm({ name: '', email: '', message: '', phone: '' }); setFile(null); }}
             >
               Send another message
             </button>
@@ -99,6 +100,16 @@ export default function Contact() {
               value={form.email}
               onChange={handleChange}
               required
+              className="px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-base text-nexa-night bg-nexa-ivory/80"
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Your Phone Number"
+              value={form.phone}
+              onChange={handleChange}
+              required
+              pattern="[+0-9\s-]{7,}"
               className="px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-base text-nexa-night bg-nexa-ivory/80"
             />
             <textarea
