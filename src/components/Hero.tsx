@@ -154,6 +154,20 @@ export default function Hero() {
             <span className="relative z-10">Connecting talent,<br className="hidden sm:block" /> driving success.</span>
           </h1>
           <span className="text-nexa-gold text-3xl md:text-4xl font-serif font-bold mt-2 select-none self-end">”</span>
+          {/* Bouton Discover our expertise */}
+          <a
+            href="#about"
+            className="mt-6 inline-block px-7 py-3 rounded-full border-2 border-nexa-gold bg-nexa-gold/10 text-nexa-gold font-sans font-semibold text-base sm:text-lg shadow hover:bg-nexa-gold hover:text-nexa-night transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-nexa-gold"
+            onClick={e => {
+              e.preventDefault();
+              const el = document.getElementById('about');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }}
+          >
+            Discover our expertise
+          </a>
         </div>
       </div>
       {/* Colonne droite : Bloc expertises enrichi */}

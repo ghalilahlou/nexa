@@ -25,6 +25,7 @@ html, body {
   color: #0a1f33;
   font-family: 'Manrope', sans-serif;
   scroll-behavior: smooth;
+  filter: sepia(0.08) brightness(0.98); /* filtre beige subtil */
 }
 
 h1, h2, h3, h4, h5, h6 {

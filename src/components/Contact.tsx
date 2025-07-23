@@ -6,19 +6,10 @@ import { FaLinkedin } from "react-icons/fa";
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "", phone: "" });
   const [submitted, setSubmitted] = useState(false);
-  const [file, setFile] = useState<File|null>(null);
   const [success, setSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-    } else {
-      setFile(null);
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,7 +21,6 @@ export default function Contact() {
       formData.append('email', form.email);
       formData.append('phone', form.phone);
       formData.append('message', form.message);
-      if (file) formData.append('file', file);
       const res = await fetch('/api/contact', {
         method: 'POST',
         body: formData,
@@ -77,7 +67,7 @@ export default function Contact() {
             <button
               type="button"
               className="mt-2 px-6 py-2 rounded-full border-2 border-nexa-gold bg-nexa-gold/10 text-nexa-gold font-sans font-semibold text-base hover:bg-nexa-gold hover:text-nexa-night transition-colors duration-300 shadow"
-              onClick={() => { setSuccess(false); setSubmitted(false); setForm({ name: '', email: '', message: '', phone: '' }); setFile(null); }}
+              onClick={() => { setSuccess(false); setSubmitted(false); setForm({ name: '', email: '', message: '', phone: '' }); }}
             >
               Send another message
             </button>
@@ -121,17 +111,6 @@ export default function Contact() {
               rows={5}
               className="px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-base text-nexa-night bg-nexa-ivory/80 resize-none"
             />
-            <div className="flex flex-col gap-1">
-              <label className="font-sans text-sm text-nexa-night/80 mb-1" htmlFor="file">Attachment (optional)</label>
-              <input
-                type="file"
-                id="file"
-                name="file"
-                onChange={handleFileChange}
-                className="block w-full text-sm text-nexa-night file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-2 file:border-nexa-gold file:bg-nexa-gold/10 file:text-nexa-gold file:font-semibold file:transition-all file:duration-200 hover:file:bg-nexa-gold hover:file:text-nexa-night file:cursor-pointer"
-              />
-              {file && <span className="text-xs text-nexa-gold mt-1">{file.name}</span>}
-            </div>
             <motion.button
               type="submit"
               className="mt-1 sm:mt-2 px-6 sm:px-8 py-3 rounded-full border-2 border-nexa-gold bg-nexa-gold/10 text-nexa-gold font-sans font-semibold text-base sm:text-lg backdrop-blur-md hover:bg-nexa-gold hover:text-nexa-night transition-colors duration-300 shadow-lg w-full"
