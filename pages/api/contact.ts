@@ -93,7 +93,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await transporter.sendMail({
       from: `Nexa Partners <${process.env.GMAIL_USER}>`,
-      to: ['messnexa@gmail.com'],
+      to: ['Contact@nexa-p.com'],
       subject: `Nexa Partners - Nouveau message de ${name}`,
       text: `Nom: ${name}\nEmail: ${email}\nTéléphone: ${phone}\nSecteur: ${sector}\nMessage: ${message}`,
       html,

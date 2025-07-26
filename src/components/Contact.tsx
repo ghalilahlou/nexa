@@ -46,7 +46,7 @@ export default function Contact() {
         Let’s connect. Whether you’re seeking talent, exploring new opportunities, or want to learn more about our approach, we’d love to hear from you.
       </p>
       <motion.form
-        className="w-full max-w-md sm:max-w-lg bg-white/90 rounded-2xl shadow-xl p-5 sm:p-8 flex flex-col gap-4 sm:gap-6 border-2 border-nexa-gold/20 z-10"
+        className="w-full max-w-sm sm:max-w-md md:max-w-lg bg-white/90 rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 flex flex-col gap-3 sm:gap-4 md:gap-6 border-2 border-nexa-gold/20 z-10"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -81,7 +81,7 @@ export default function Contact() {
               value={form.name}
               onChange={handleChange}
               required
-              className="px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-base text-nexa-night bg-nexa-ivory/80"
+              className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-sm sm:text-base text-nexa-night bg-nexa-ivory/80"
             />
             <input
               type="email"
@@ -90,7 +90,7 @@ export default function Contact() {
               value={form.email}
               onChange={handleChange}
               required
-              className="px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-base text-nexa-night bg-nexa-ivory/80"
+              className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-sm sm:text-base text-nexa-night bg-nexa-ivory/80"
             />
             <input
               type="tel"
@@ -100,7 +100,7 @@ export default function Contact() {
               onChange={handleChange}
               required
               pattern="[+0-9\s-]{7,}"
-              className="px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-base text-nexa-night bg-nexa-ivory/80"
+              className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-sm sm:text-base text-nexa-night bg-nexa-ivory/80"
             />
             <textarea
               name="message"
@@ -108,8 +108,8 @@ export default function Contact() {
               value={form.message}
               onChange={handleChange}
               required
-              rows={5}
-              className="px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-base text-nexa-night bg-nexa-ivory/80 resize-none"
+              rows={4}
+              className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-nexa-gold/20 focus:border-nexa-gold focus:ring-2 focus:ring-nexa-gold outline-none font-sans text-sm sm:text-base text-nexa-night bg-nexa-ivory/80 resize-none"
             />
             <motion.button
               type="submit"
@@ -126,7 +126,7 @@ export default function Contact() {
       <div className="mt-8 sm:mt-10 text-center z-10 flex flex-col items-center gap-2">
         <div className="font-serif text-lg sm:text-xl text-nexa-night font-bold">Nexa Partners</div>
         <div className="text-nexa-steel text-sm sm:text-base">Casablanca, Morocco</div>
-        <a href="mailto:messnexa@gmail.com" className="text-nexa-gold font-sans underline hover:text-nexa-night transition-colors duration-200 text-sm sm:text-base">messnexa@gmail.com</a>
+        <a href="mailto:Contact@nexa-p.com" className="text-nexa-gold font-sans underline hover:text-nexa-night transition-colors duration-200 text-sm sm:text-base">Contact@nexa-p.com</a>
         <div className="flex gap-4 mt-2">
           <a
             href="https://www.linkedin.com/company/nexapartners/"

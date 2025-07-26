@@ -43,47 +43,42 @@ function DottedGrid() {
   );
 }
 
-// Particules dorées animées
+// Particules dorées animées - Version sans hydratation
 function GoldParticles() {
-  const [positions, setPositions] = useState<{top: string, left: string, size: number}[]>([]);
+  const [isClient, setIsClient] = useState(false);
+  const [positions, setPositions] = useState<{top: string, left: string, size: number, delay: string, duration: string}[]>([]);
+  
   useEffect(() => {
+    setIsClient(true);
     setPositions(
-      Array.from({ length: 18 }, () => ({
-        top: `${Math.random() * 90}%`,
-        left: `${Math.random() * 90}%`,
-        size: 8 + Math.floor(Math.random() * 4) * 6,
+      Array.from({ length: 30 }, () => ({
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        size: 1,
+        delay: `${Math.random() * 3}s`,
+        duration: `${3 + Math.random() * 3}s`,
       }))
     );
   }, []);
+  
+  if (!isClient) {
+    return null; // Ne rend rien côté serveur
+  }
+  
   return (
     <div className="absolute inset-0 pointer-events-none z-0">
       {positions.map((pos, i) => (
         <div
           key={i}
-          className={`absolute rounded-full bg-gradient-to-br from-[#ffd700] via-[#fffbe9] to-[#c7a770] opacity-30 animate-particle${i % 6}`}
+          className="absolute w-1 h-1 bg-gradient-to-r from-nexa-gold to-amber-400 rounded-full animate-float"
           style={{
-            width: `${pos.size}px`,
-            height: `${pos.size}px`,
-            top: pos.top,
             left: pos.left,
-            filter: 'blur(1.5px)',
+            top: pos.top,
+            animationDelay: pos.delay,
+            animationDuration: pos.duration,
           }}
         />
       ))}
-      <style jsx>{`
-        @keyframes particle0 { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
-        @keyframes particle1 { 0% { transform: translateX(0); } 100% { transform: translateX(10px); } }
-        @keyframes particle2 { 0% { opacity: 0.3; } 50% { opacity: 0.7; } 100% { opacity: 0.3; } }
-        @keyframes particle3 { 0% { transform: scale(1); } 100% { transform: scale(1.2); } }
-        @keyframes particle4 { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(8px) scale(1.1); } }
-        @keyframes particle5 { 0% { opacity: 0.5; } 100% { opacity: 0.2; } }
-        .animate-particle0 { animation: particle0 5s infinite alternate ease-in-out; }
-        .animate-particle1 { animation: particle1 7s infinite alternate ease-in-out; }
-        .animate-particle2 { animation: particle2 6s infinite alternate ease-in-out; }
-        .animate-particle3 { animation: particle3 8s infinite alternate ease-in-out; }
-        .animate-particle4 { animation: particle4 9s infinite alternate ease-in-out; }
-        .animate-particle5 { animation: particle5 7s infinite alternate ease-in-out; }
-      `}</style>
     </div>
   );
 }
@@ -142,14 +137,32 @@ export default function Hero() {
     }
   }
   return (
-    <section className="relative flex flex-col md:flex-row items-stretch justify-center min-h-[80vh] w-full overflow-hidden bg-gradient-to-br from-nexa-ivory via-[#e0f2ff] to-[#ffe5ec] pt-24 pb-10 px-4 sm:pt-32 sm:pb-16">
+    <section className="relative flex flex-col md:flex-row items-stretch justify-center min-h-[70vh] sm:min-h-[80vh] w-full overflow-hidden bg-gradient-to-br from-nexa-ivory via-[#e0f2ff] to-[#ffe5ec] pt-20 pb-8 px-4 sm:pt-28 md:pt-32 sm:pb-12 md:pb-16">
+      {/* Effet de particules dorées flottantes - Version sans hydratation */}
+      <GoldParticles />
+      
+      {/* Effet de lignes géométriques */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ffd700" stopOpacity="0.3" />
+              <stop offset="50%" stopColor="#c7a770" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#ffd700" stopOpacity="0.3" />
+            </linearGradient>
+          </defs>
+          <path d="M0,50 Q25,20 50,50 T100,50" stroke="url(#lineGrad)" strokeWidth="0.5" fill="none" />
+          <path d="M0,30 Q25,60 50,30 T100,30" stroke="url(#lineGrad)" strokeWidth="0.5" fill="none" />
+          <path d="M0,70 Q25,40 50,70 T100,70" stroke="url(#lineGrad)" strokeWidth="0.5" fill="none" />
+        </svg>
+      </div>
       <HeroBackgroundMotifs />
       {/* Colonne gauche : Citation Nexa */}
       <div className="flex-1 flex flex-col justify-center items-center md:items-end md:pr-8 z-10">
         <div className="relative max-w-xl w-full flex flex-col items-center md:items-end animate-fade-slide-up">
           {/* Guillemets stylisés */}
           <span className="text-nexa-gold text-4xl md:text-5xl font-serif font-bold mb-2 md:mb-4 select-none">“</span>
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-nexa-night text-center md:text-right tracking-tight mb-2 sm:mb-4 leading-tight relative group transition-all duration-300 hover:animate-shine">
+          <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-nexa-night text-center md:text-right tracking-tight mb-2 sm:mb-4 leading-tight relative group transition-all duration-300">
             <span className="shine-bg absolute inset-0 z-0 pointer-events-none" />
             <span className="relative z-10">Connecting talent,<br className="hidden sm:block" /> driving success.</span>
           </h1>
@@ -157,7 +170,7 @@ export default function Hero() {
           {/* Bouton Discover our expertise */}
           <a
             href="#about"
-            className="mt-6 inline-block px-7 py-3 rounded-full border-2 border-nexa-gold bg-nexa-gold/10 text-nexa-gold font-sans font-semibold text-base sm:text-lg shadow hover:bg-nexa-gold hover:text-nexa-night transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-nexa-gold"
+            className="mt-6 inline-block px-8 py-4 rounded-full border-2 border-nexa-gold bg-gradient-to-r from-nexa-gold/20 via-nexa-gold/10 to-nexa-gold/20 text-nexa-gold font-sans font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-nexa-gold relative overflow-hidden group"
             onClick={e => {
               e.preventDefault();
               const el = document.getElementById('about');
@@ -166,22 +179,23 @@ export default function Hero() {
               }
             }}
           >
-            Discover our expertise
+            <span className="absolute inset-0 bg-gradient-to-r from-nexa-gold/0 via-nexa-gold/20 to-nexa-gold/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+            <span className="relative z-10">Discover our expertise</span>
           </a>
         </div>
       </div>
       {/* Colonne droite : Bloc expertises enrichi */}
       <div className="flex-1 flex flex-col justify-center items-center md:items-start z-20 mt-10 md:mt-0 animate-fade-slide-up delay-200">
-        <div className="relative bg-white/20 backdrop-blur-2xl rounded-[2.2rem] shadow-xl px-3 py-6 sm:px-8 sm:py-10 max-w-full sm:max-w-md w-full flex flex-col items-center border-0 overflow-hidden group mx-auto" style={{boxShadow: '0 8px 32px 0 #ffd70022, 0 2px 16px 0 #c7a77022'}}>
+        <div className="relative bg-white/20 backdrop-blur-2xl rounded-[1.5rem] sm:rounded-[2.2rem] shadow-xl px-4 py-6 sm:px-6 md:px-8 sm:py-8 md:py-10 max-w-full sm:max-w-md w-full flex flex-col items-center border-0 overflow-hidden group mx-auto" style={{boxShadow: '0 8px 32px 0 #ffd70022, 0 2px 16px 0 #c7a77022'}}>
           {/* Bordure dorée épaisse continue */}
-          <span className="absolute inset-0 rounded-[2.2rem] pointer-events-none border-4 border-[#ffd700] z-10" style={{boxShadow: '0 0 0 2px #ffd700, 0 0 16px 2px #ffe5ec55'}} />
+          <span className="absolute inset-0 rounded-[1.5rem] sm:rounded-[2.2rem] pointer-events-none border-2 sm:border-4 border-[#ffd700] z-10" style={{boxShadow: '0 0 0 2px #ffd700, 0 0 16px 2px #ffe5ec55'}} />
           {/* Ombre dorée discrète */}
-          <span className="absolute inset-0 rounded-[2.2rem] pointer-events-none z-0" style={{boxShadow: '0 8px 32px 0 #ffd70022'}} />
+          <span className="absolute inset-0 rounded-[1.5rem] sm:rounded-[2.2rem] pointer-events-none z-0" style={{boxShadow: '0 8px 32px 0 #ffd70022'}} />
           {/* Motif vague dorée en bas à droite */}
           <svg className="absolute right-4 bottom-2 w-20 h-5 sm:w-24 sm:h-7 opacity-30 z-10 pointer-events-none" viewBox="0 0 96 28" fill="none"><path d="M0,20 Q24,0 48,20 T96,20" stroke="#ffd700" strokeWidth="2.5" fill="none" /></svg>
           {/* Titre sur fond dégradé pastel */}
-          <h3 className="font-serif text-lg sm:text-2xl font-extrabold mb-4 sm:mb-8 text-center tracking-wide relative z-20 bg-none p-0">
-            <span className="bg-gradient-to-r from-[#ffd700] via-[#c7a770] to-[#ffe5ec] bg-clip-text text-transparent animate-shine-gold drop-shadow-[0_2px_12px_rgba(199,167,112,0.25)] hover:animate-shine-gold-hover transition-all duration-300 cursor-pointer">
+          <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 sm:mb-6 md:mb-8 text-center tracking-wide relative z-20 bg-none p-0">
+            <span className="text-amber-800 drop-shadow-[0_6px_25px_rgba(146,64,14,0.8)] transition-all duration-300 cursor-pointer">
               Our Expertise
             </span>
           </h3>
@@ -273,6 +287,19 @@ export default function Hero() {
         }
         .hover\:animate-shine-gold-hover:hover {
           animation: shine-gold 1.2s linear infinite;
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x { 
+          background-size: 200% 200%;
+          animation: gradient-x 3s ease infinite;
         }
       `}</style>
     </section>

@@ -81,17 +81,23 @@ export default function Expertise() {
     const hashes = ['#expertise-strategy','#expertise-finance','#expertise-tech','#expertise-industrials'];
     window.history.replaceState(null, '', hashes[idx]);
     setTimeout(() => setGlowIdx(null), 1500);
+    
+    // Permet le défilement normal immédiatement
+    setTimeout(() => {
+      // Supprime le hash de l'URL pour permettre le défilement normal
+      window.history.replaceState(null, '', window.location.pathname);
+    }, 1000);
   }
   return (
-    <section id="expertise" className="w-full py-14 sm:py-24 relative flex flex-col items-center overflow-hidden bg-gradient-to-br from-nexa-ivory via-blue-50 to-pink-50">
+    <section id="expertise" className="w-full py-14 sm:py-24 relative flex flex-col items-center bg-gradient-to-br from-nexa-ivory via-blue-50 to-pink-50">
       {/* Decorative gradients and lines */}
-      <div className="absolute left-0 top-1/4 w-28 h-28 sm:w-48 sm:h-48 bg-gradient-to-br from-pink-200 via-yellow-100 to-nexa-gold/30 rounded-full blur-3xl opacity-60 z-0" />
-      <div className="absolute right-0 bottom-0 w-20 h-20 sm:w-40 sm:h-40 bg-gradient-to-tr from-blue-100 via-nexa-gold/20 to-yellow-100/30 rounded-full blur-2xl opacity-50 z-0" />
-      <svg className="absolute left-1/2 top-0 -translate-x-1/2 w-2/3 h-8 sm:h-12 opacity-20 z-0" viewBox="0 0 600 48" fill="none"><path d="M0,24 Q150,0 300,24 T600,24" stroke="#c7a770" strokeWidth="2" fill="none" /></svg>
-      <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-nexa-night mb-8 sm:mb-12 text-center z-10">
-        Our <span className="text-nexa-gold">Expertise</span>
+      <div className="absolute left-0 top-1/4 w-28 h-28 sm:w-48 sm:h-48 bg-gradient-to-br from-pink-200 via-yellow-100 to-nexa-gold/30 rounded-full blur-3xl opacity-60 pointer-events-none" />
+      <div className="absolute right-0 bottom-0 w-20 h-20 sm:w-40 sm:h-40 bg-gradient-to-tr from-blue-100 via-nexa-gold/20 to-yellow-100/30 rounded-full blur-2xl opacity-50 pointer-events-none" />
+      <svg className="absolute left-1/2 top-0 -translate-x-1/2 w-2/3 h-8 sm:h-12 opacity-20 pointer-events-none" viewBox="0 0 600 48" fill="none"><path d="M0,24 Q150,0 300,24 T600,24" stroke="#c7a770" strokeWidth="2" fill="none" /></svg>
+      <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-nexa-night mb-6 sm:mb-8 md:mb-12 text-center relative z-10">
+        Our <span className="text-nexa-gold drop-shadow-[0_3px_6px_rgba(199,167,112,0.4)]">Expertise</span>
       </h2>
-      <div className="max-w-3xl w-full flex flex-col gap-6 sm:gap-8 px-2 sm:px-4 z-10">
+      <div className="max-w-3xl w-full flex flex-col gap-4 sm:gap-6 md:gap-8 px-3 sm:px-4 relative z-10">
         <ul className="flex flex-col gap-3 w-full">
           {expertise.map((item, idx) => (
             <li key={item.title} id={
@@ -102,7 +108,7 @@ export default function Expertise() {
             } ref={refs[idx]} className="transition-all duration-300">
               <button
                 ref={btnRefs[idx]}
-                className={`w-full flex items-center justify-between gap-2 px-4 py-3 rounded-lg font-sans text-base sm:text-lg border-2 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-nexa-gold
+                className={`w-full flex items-center justify-between gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg font-sans text-sm sm:text-base md:text-lg border-2 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-nexa-gold
                   ${selected === idx
                     ? `border-nexa-gold bg-gradient-to-r from-[#fffbe9] via-[#ffe5ec] to-[#e0f2ff] text-nexa-gold shadow-lg scale-105 ring-2 ring-nexa-gold` + (glowIdx === idx ? ' animate-glow-gold' : '')
                     : "border-transparent bg-white hover:bg-nexa-gold/10 text-nexa-night"}
@@ -111,9 +117,9 @@ export default function Expertise() {
                 aria-controls={`panel-${idx}`}
                 onClick={() => handleSelect(idx)}
               >
-                <span className="flex items-center gap-3">
-                  <span className={`w-10 h-10 flex items-center justify-center rounded-lg shadow-md transition-transform duration-300 ${selected === idx ? 'scale-110 bg-gradient-to-br from-[#ffd700] via-[#ffe5ec] to-[#e0f2ff]' : 'bg-gradient-to-br from-[#ffe5ec] via-[#ffd700] to-[#e0f2ff]'}`}>{item.icon}</span>
-                  <span className="font-medium text-left">{item.title}</span>
+                <span className="flex items-center gap-2 sm:gap-3">
+                  <span className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg shadow-md transition-transform duration-300 ${selected === idx ? 'scale-110 bg-gradient-to-br from-[#ffd700] via-[#ffe5ec] to-[#e0f2ff]' : 'bg-gradient-to-br from-[#ffe5ec] via-[#ffd700] to-[#e0f2ff]'}`}>{item.icon}</span>
+                  <span className="font-medium text-left text-sm sm:text-base">{item.title}</span>
                 </span>
                 <span className={`transition-transform duration-300 text-2xl ${selected === idx ? 'rotate-180 text-nexa-gold' : 'text-nexa-steel'}`}><FiChevronDown /></span>
               </button>
@@ -125,7 +131,7 @@ export default function Expertise() {
                   transitionProperty: 'max-height, opacity, padding',
                 }}
               >
-                <div className="pl-16 pr-4 text-nexa-night text-sm sm:text-base leading-relaxed">
+                <div className="pl-12 sm:pl-16 pr-3 sm:pr-4 text-nexa-night text-sm sm:text-base leading-relaxed">
                   {item.description}
                 </div>
               </div>

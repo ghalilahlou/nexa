@@ -3,43 +3,42 @@
 import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 
-// Particules dorées animées pour About
+// Particules dorées animées pour About - Version sans hydratation
 function GoldParticlesAbout() {
-  const [positions, setPositions] = useState<{top: string, left: string, size: number}[]>([]);
+  const [isClient, setIsClient] = useState(false);
+  const [positions, setPositions] = useState<{top: string, left: string, size: number, delay: string, duration: string}[]>([]);
+  
   useEffect(() => {
+    setIsClient(true);
     setPositions(
-      Array.from({ length: 10 }, () => ({
-        top: `${Math.random() * 90}%`,
-        left: `${Math.random() * 90}%`,
-        size: 10 + Math.floor(Math.random() * 3) * 8,
+      Array.from({ length: 15 }, () => ({
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        size: 2 + Math.floor(Math.random() * 3),
+        delay: `${Math.random() * 2}s`,
+        duration: `${4 + Math.random() * 3}s`,
       }))
     );
   }, []);
+  
+  if (!isClient) {
+    return null; // Ne rend rien côté serveur
+  }
+  
   return (
     <div className="absolute inset-0 pointer-events-none z-0">
       {positions.map((pos, i) => (
         <div
           key={i}
-          className={`absolute rounded-full bg-gradient-to-br from-[#ffd700] via-[#fffbe9] to-[#c7a770] opacity-20 animate-about-particle${i % 4}`}
+          className="absolute w-1 h-1 bg-gradient-to-r from-nexa-gold to-amber-400 rounded-full opacity-40 animate-float"
           style={{
-            width: `${pos.size}px`,
-            height: `${pos.size}px`,
-            top: pos.top,
             left: pos.left,
-            filter: 'blur(2px)',
+            top: pos.top,
+            animationDelay: pos.delay,
+            animationDuration: pos.duration,
           }}
         />
       ))}
-      <style jsx>{`
-        @keyframes about-particle0 { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
-        @keyframes about-particle1 { 0% { opacity: 0.2; } 50% { opacity: 0.5; } 100% { opacity: 0.2; } }
-        @keyframes about-particle2 { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
-        @keyframes about-particle3 { 0% { transform: translateX(0); } 100% { transform: translateX(8px); } }
-        .animate-about-particle0 { animation: about-particle0 7s infinite alternate ease-in-out; }
-        .animate-about-particle1 { animation: about-particle1 6s infinite alternate ease-in-out; }
-        .animate-about-particle2 { animation: about-particle2 8s infinite alternate ease-in-out; }
-        .animate-about-particle3 { animation: about-particle3 9s infinite alternate ease-in-out; }
-      `}</style>
     </div>
   );
 }
@@ -81,11 +80,12 @@ export default function AboutUs() {
             {/* Halo doré animé */}
             <span className="absolute -top-2 left-1/2 -translate-x-1/2 w-36 h-36 rounded-full bg-gradient-to-br from-[#ffd70099] via-[#fffbe9cc] to-[#c7a77066] blur-2xl opacity-60 animate-halo-glow z-0" />
             <Image
-              src="/assets/images/profile.png"
+              src="/assets/expertise/profile.png"
               alt="Hicham Boumnade"
               width={128}
               height={128}
-              className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-full mb-4 shadow-md border-4 border-nexa-gold/30 relative z-10 group-hover:scale-105 group-hover:shadow-[0_0_32px_0_rgba(199,167,112,0.25)] transition-transform duration-300"
+              className="w-32 h-32 sm:w-40 sm:h-40 object-cover object-center rounded-full mb-4 shadow-md border-4 border-nexa-gold/30 relative z-10 group-hover:scale-105 group-hover:shadow-[0_0_32px_0_rgba(199,167,112,0.25)] transition-transform duration-300"
+              style={{ objectPosition: 'center 10%' }}
             />
             <div className="text-center relative z-10">
               <div className="font-serif text-lg sm:text-xl font-bold text-nexa-night">Hicham Boumnade</div>

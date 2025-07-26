@@ -25,7 +25,7 @@ export default function RootLayout({
       </head>
       <body
         className={
-          "font-sans bg-[#fefcf8] text-[#0a1f33] antialiased min-h-screen" // Manrope par défaut, fond ivoire, texte bleu nuit
+          "font-sans bg-[#fefcf8] text-[#0a1f33] antialiased min-h-screen navbar-fixed" // Manrope par défaut, fond ivoire, texte bleu nuit
         }
       >
         <Navbar />
