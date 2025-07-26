@@ -123,21 +123,61 @@ export default function Contact() {
         )}
       </motion.form>
       {/* Company contact info enrichie */}
-      <div className="mt-8 sm:mt-10 text-center z-10 flex flex-col items-center gap-2">
+      <div className="mt-8 sm:mt-10 text-center z-10 flex flex-col items-center gap-4">
         <div className="font-serif text-lg sm:text-xl text-nexa-night font-bold">Nexa Partners</div>
-        <div className="text-nexa-steel text-sm sm:text-base">Casablanca, Morocco</div>
-        <a href="mailto:Contact@nexa-p.com" className="text-nexa-gold font-sans underline hover:text-nexa-night transition-colors duration-200 text-sm sm:text-base">Contact@nexa-p.com</a>
-        <div className="flex gap-4 mt-2">
-          <a
-            href="https://www.linkedin.com/company/nexapartners/"
+        
+        {/* Adresses des bureaux */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+          {/* Bureau Casablanca */}
+          <a 
+            href="https://www.google.com/maps/search/?api=1&query=138+Boulevard+Moulay+Youssef+Casablanca+Maroc"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#c7a770] bg-white/80 hover:bg-gradient-to-br hover:from-[#fffbe9] hover:to-[#ffd70022] transition-all duration-300 text-2xl rounded-full p-2 shadow-[0_2px_12px_0_rgba(199,167,112,0.10)] hover:shadow-[0_0_24px_0_rgba(199,167,112,0.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-nexa-gold hover:scale-110"
-            aria-label="LinkedIn Nexa Partners"
+            className="flex flex-col items-center p-4 bg-white/50 rounded-lg backdrop-blur-sm border border-nexa-gold/20 hover:bg-white/70 hover:border-nexa-gold/40 transition-all duration-300 cursor-pointer group"
           >
-            <FaLinkedin />
+            <h3 className="font-serif text-base font-bold text-nexa-night mb-2 group-hover:text-nexa-gold transition-colors duration-300">Casablanca</h3>
+            <p className="text-sm text-nexa-night/80 font-sans text-center group-hover:text-nexa-night transition-colors duration-300">
+              138 Boulevard Moulay Youssef<br />
+              Casablanca, Maroc
+            </p>
+            <div className="mt-2 text-xs text-nexa-gold/70 group-hover:text-nexa-gold transition-colors duration-300">
+              📍 Voir sur Google Maps
+            </div>
           </a>
-          {/* Ajoute ici d'autres liens optionnels si besoin */}
+          
+          {/* Bureau Paris */}
+          <a 
+            href="https://www.google.com/maps/search/?api=1&query=21+Rue+Laccouriere+Paris+France"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center p-4 bg-white/50 rounded-lg backdrop-blur-sm border border-nexa-gold/20 hover:bg-white/70 hover:border-nexa-gold/40 transition-all duration-300 cursor-pointer group"
+          >
+            <h3 className="font-serif text-base font-bold text-nexa-night mb-2 group-hover:text-nexa-gold transition-colors duration-300">Paris</h3>
+            <p className="text-sm text-nexa-night/80 font-sans text-center group-hover:text-nexa-night transition-colors duration-300">
+              21 Rue Laccouriere<br />
+              Paris, France
+            </p>
+            <div className="mt-2 text-xs text-nexa-gold/70 group-hover:text-nexa-gold transition-colors duration-300">
+              📍 Voir sur Google Maps
+            </div>
+          </a>
+        </div>
+        
+        {/* Email et réseaux sociaux */}
+        <div className="flex flex-col items-center gap-2">
+          <a href="mailto:Contact@nexa-p.com" className="text-nexa-gold font-sans underline hover:text-nexa-night transition-colors duration-200 text-sm sm:text-base">Contact@nexa-p.com</a>
+          <div className="flex gap-4 mt-2">
+            <a
+              href="https://www.linkedin.com/company/nexapartners/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#c7a770] bg-white/80 hover:bg-gradient-to-br hover:from-[#fffbe9] hover:to-[#ffd70022] transition-all duration-300 text-2xl rounded-full p-2 shadow-[0_2px_12px_0_rgba(199,167,112,0.10)] hover:shadow-[0_0_24px_0_rgba(199,167,112,0.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-nexa-gold hover:scale-110"
+              aria-label="LinkedIn Nexa Partners"
+            >
+              <FaLinkedin />
+            </a>
+            {/* Ajoute ici d'autres liens optionnels si besoin */}
+          </div>
         </div>
       </div>
     </section>
