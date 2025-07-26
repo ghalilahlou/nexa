@@ -129,38 +129,22 @@ export default function Contact() {
         {/* Adresses des bureaux */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
           {/* Bureau Casablanca */}
-          <a 
-            href="https://www.google.com/maps/search/?api=1&query=138+Boulevard+Moulay+Youssef+Casablanca+Maroc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center p-4 bg-white/50 rounded-lg backdrop-blur-sm border border-nexa-gold/20 hover:bg-white/70 hover:border-nexa-gold/40 transition-all duration-300 cursor-pointer group"
-          >
-            <h3 className="font-serif text-base font-bold text-nexa-night mb-2 group-hover:text-nexa-gold transition-colors duration-300">Casablanca</h3>
-            <p className="text-sm text-nexa-night/80 font-sans text-center group-hover:text-nexa-night transition-colors duration-300">
+          <div className="flex flex-col items-center p-4 bg-white/50 rounded-lg backdrop-blur-sm border border-nexa-gold/20">
+            <h3 className="font-serif text-base font-bold text-nexa-night mb-2">Casablanca</h3>
+            <p className="text-sm text-nexa-night/80 font-sans text-center">
               138 Boulevard Moulay Youssef<br />
               Casablanca, Maroc
             </p>
-            <div className="mt-2 text-xs text-nexa-gold/70 group-hover:text-nexa-gold transition-colors duration-300">
-              📍 Voir sur Google Maps
-            </div>
-          </a>
+          </div>
           
           {/* Bureau Paris */}
-          <a 
-            href="https://www.google.com/maps/search/?api=1&query=21+Rue+Laccouriere+Paris+France"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center p-4 bg-white/50 rounded-lg backdrop-blur-sm border border-nexa-gold/20 hover:bg-white/70 hover:border-nexa-gold/40 transition-all duration-300 cursor-pointer group"
-          >
-            <h3 className="font-serif text-base font-bold text-nexa-night mb-2 group-hover:text-nexa-gold transition-colors duration-300">Paris</h3>
-            <p className="text-sm text-nexa-night/80 font-sans text-center group-hover:text-nexa-night transition-colors duration-300">
+          <div className="flex flex-col items-center p-4 bg-white/50 rounded-lg backdrop-blur-sm border border-nexa-gold/20">
+            <h3 className="font-serif text-base font-bold text-nexa-night mb-2">Paris</h3>
+            <p className="text-sm text-nexa-night/80 font-sans text-center">
               21 Rue Laccouriere<br />
               Paris, France
             </p>
-            <div className="mt-2 text-xs text-nexa-gold/70 group-hover:text-nexa-gold transition-colors duration-300">
-              📍 Voir sur Google Maps
-            </div>
-          </a>
+          </div>
         </div>
         
         {/* Email et réseaux sociaux */}
