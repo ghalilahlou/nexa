@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedin } from "react-icons/fa";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "", phone: "" });
@@ -147,21 +146,9 @@ export default function Contact() {
           </div>
         </div>
         
-        {/* Email et réseaux sociaux */}
+        {/* Email */}
         <div className="flex flex-col items-center gap-2">
           <a href="mailto:Contact@nexa-p.com" className="text-nexa-gold font-sans underline hover:text-nexa-night transition-colors duration-200 text-sm sm:text-base">Contact@nexa-p.com</a>
-          <div className="flex gap-4 mt-2">
-            <a
-              href="https://www.linkedin.com/company/nexapartners/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#c7a770] bg-white/80 hover:bg-gradient-to-br hover:from-[#fffbe9] hover:to-[#ffd70022] transition-all duration-300 text-2xl rounded-full p-2 shadow-[0_2px_12px_0_rgba(199,167,112,0.10)] hover:shadow-[0_0_24px_0_rgba(199,167,112,0.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-nexa-gold hover:scale-110"
-              aria-label="LinkedIn Nexa Partners"
-            >
-              <FaLinkedin />
-            </a>
-            {/* Ajoute ici d'autres liens optionnels si besoin */}
-          </div>
         </div>
       </div>
     </section>
