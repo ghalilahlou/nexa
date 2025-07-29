@@ -30,7 +30,7 @@ export default function Clients() {
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-br from-blue-200 via-nexa-gold/30 to-nexa-ivory/60 rounded-full blur-2xl z-0 opacity-60" />
       <div className="absolute right-0 top-1/3 w-32 h-32 bg-gradient-to-tr from-nexa-gold/20 via-blue-100 to-nexa-ivory/40 rounded-full blur-2xl z-0 opacity-50" />
       <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-nexa-night mb-6 sm:mb-8 text-center z-10">
-        <span className="text-nexa-gold">They trust us</span>
+        <span className="text-nexa-gold">Selected References</span>
       </h2>
       <div className="w-full max-w-5xl px-2 sm:px-4 z-10">
         <Swiper
